@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>С Международным женским днём!</h1>
+    </header>
+
+    <main>
+        <section class="congratulations">
+            <h2>Дорогие женщины, поздравляем вас с 8 Марта!</h2>
+            <p>Нажмите на кнопку, чтобы получить случайное поздравление:</p>
+            <button id="randomizeButton">🎉 Получить поздравление</button>
+            <p id="congratulationText" class="congratulation-text"></p>
+        </section>
+
+        <section class="gallery">
+            <h2>Галерея</h2>
+            <div class="images">
+                <div class="slider-container">
+                    <div class="slider-images">
+                        <img src="https://cashpo-design.ru/userfiles/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/cvety1.jpg" alt="" class="active">
+                        <img src="https://www.jcmh.org/wp-content/themes/yootheme/cache/d8/hero_webinar_positively_you-d84af898.jpeg" alt="">
+                        <img src="https://ooosantera.ru/wp-content/uploads/2023/11/AdobeStock_417239868.jpeg" alt="">
+                    </div>
+                    <button class="slider-button prev">&#10094;</button>
+                    <button class="slider-button next">&#10095;</button>
+                </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Рандомайзер поздравлений
+const congratulations = [
+    "Пусть ваш день будет наполнен радостью, улыбками и теплом!",
+    "Вы — самые прекрасные, умные и добрые! Спасибо за вашу любовь и заботу!",
+    "С 8 Марта! Пусть счастье и удача всегда будут с вами!",
+    "Вы — вдохновение для всех нас! С праздником!",
+    "Пусть ваша жизнь будет яркой, как весенние цветы!",
+    "Спасибо за вашу доброту и нежность! С 8 Марта!",
+    "Пусть каждый день приносит вам радость и улыбки!",
+    "Вы — настоящие волшебницы! С праздником весны!",
+];
+
+const button = document.getElementById('randomizeButton');
+const textElement = document.getElementById('congratulationText');
+
+button.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * congratulations.length);
+    textElement.textContent = congratulations[randomIndex];
+    textElement.style.opacity = 0;
+    setTimeout(() => {
+        textElement.style.opacity = 1;
+    }, 10);
+});
+
+// Слайдер
+const images = document.querySelectorAll('.slider-images img');
+const prevButton = document.querySelector('.slider-button.prev');
+const nextButton = document.querySelector('.slider-button.next');
+let currentIndex = 0;
+
+function showImage(index) {
+    images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+    });
+}
+
+prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+    showImage(currentIndex);
+});
+
+nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+    showImage(currentIndex);
+});
+
+// Показываем первое изображение при загрузке
+showImage(currentIndex);
+
+
+    </script>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+
+header {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ff6f61;
+}
+
+main {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.congratulations {
+    margin-bottom: 30px;
+}
+
+button {
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: #ff4a4a;
+    transform: scale(1.05);
+}
+
+.congratulation-text {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+
+/* Стили для слайдера */
+.slider {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-images img {
+    width: 100%;
+    display: none;
+    border-radius: 10px;
+}
+
+.slider-images img.active {
+    display: block;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.slider-button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.slider-button.prev {
+    left: 10px;
+}
+
+.slider-button.next {
+    right: 10px;
+}
+
+
+
+
+
+
+    </style>
+</body>
+</html>
+
